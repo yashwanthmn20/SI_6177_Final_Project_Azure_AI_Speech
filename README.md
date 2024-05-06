@@ -1,4 +1,4 @@
-# SI 6177 Final Project - Azure AI Speech (TTS) API
+# ITIS-6177 Final Project - Azure AI Speech (TTS) API
 
 System Integration (ITIS-6177) Final Project - Text To Speech Using Azure AI Speech (Spring 2024)
 

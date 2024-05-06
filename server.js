@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
   res.send(htmlContent);
 }); 
 
-app.get('/malespeech', (req, res) => {
+app.get('/speech/en/male', (req, res) => {
   const formHtml = `
       <html>
           <head>
@@ -58,7 +58,7 @@ app.get('/malespeech', (req, res) => {
                   statusText.textContent = "Processing..."; 
                   statusText.style.color = "black"; 
 
-                  fetch('/malespeech', {
+                  fetch('/speech/en/male', {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ app.get('/malespeech', (req, res) => {
 });
 
 
-app.post('/malespeech', async (req, res) => {
+app.post('/speech/en/male', async (req, res) => {
     const { text } = req.body;
     if (!text) {
         return res.status(400).json({ message: "Text is required in the request body." });
@@ -161,7 +161,7 @@ app.post('/malespeech', async (req, res) => {
     }
   });
 
-  app.get('/femalespeech', (req, res) => {
+  app.get('/speech/en/female', (req, res) => {
     const formHtml = `
         <html>
             <head>
@@ -178,7 +178,7 @@ app.post('/malespeech', async (req, res) => {
                     statusText.textContent = "Processing..."; 
                     statusText.style.color = "black"; 
   
-                    fetch('/femalespeech', {
+                    fetch('/speech/en/female', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -220,7 +220,7 @@ app.post('/malespeech', async (req, res) => {
   });
   
 
-app.post('/femalespeech', async (req, res) => {
+app.post('/speech/en/female', async (req, res) => {
     const { text } = req.body;
     if (!text) {
         return res.status(400).json({ message: "Text is required in the request body." });
@@ -277,7 +277,7 @@ app.post('/femalespeech', async (req, res) => {
     }
   });
 
-  app.get('/femalespanish', (req, res) => {
+  app.get('/speech/es/female', (req, res) => {
     const formHtml = `
         <html>
             <head>
@@ -294,7 +294,7 @@ app.post('/femalespeech', async (req, res) => {
                     statusText.textContent = "Processing..."; 
                     statusText.style.color = "black"; 
   
-                    fetch('/femalespanish', {
+                    fetch('/speech/es/female', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',
@@ -334,7 +334,7 @@ app.post('/femalespeech', async (req, res) => {
     `;
     res.send(formHtml);
   });
-app.post('/femalespanish', async (req, res) => {
+app.post('/speech/es/female', async (req, res) => {
     const { text } = req.body;
     if (!text) {
         return res.status(400).json({ message: "Text is required in the request body." });
