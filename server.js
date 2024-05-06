@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
   res.send('Welcome to Azure Text to Speech API');
 });
 
-app.post('/tospeech', async (req, res) => {
+app.post('/malespeech', async (req, res) => {
     const { text } = req.body;
     if (!text) {
         return res.status(400).json({ message: "Text is required in the request body." });
@@ -78,6 +78,125 @@ app.post('/tospeech', async (req, res) => {
       }
     }
   });
+
+
+app.post('/femalespeech', async (req, res) => {
+    const { text } = req.body;
+    if (!text) {
+        return res.status(400).json({ message: "Text is required in the request body." });
+    }
+   
+    const config = {
+        headers: {
+          'Ocp-Apim-Subscription-Key': azureKey,
+          'Content-Type': 'application/ssml+xml',
+          'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm' 
+        },
+        responseType: 'arraybuffer'
+      };
+      
+      const ssml = `<speak version='1.0' xml:lang='en-US'>
+                      <voice xml:lang='en-US' xml:gender='Feale' name='en-US-JessaNeural'>
+                          ${text}
+                      </voice>
+                    </speak>`;
+
+    try {
+        const response = await axios.post(azureEndpoint, ssml, config);
+        
+        const audioBuffer = Buffer.from(response.data, 'binary');
+        
+        res.writeHead(200, {
+          'Content-Type': 'audio/wav',
+          'Content-Length': audioBuffer.length
+        });
+        res.end(audioBuffer);
+    } catch (error) {
+      console.error('Full Error:', error);
+      if (error.response) {
+        console.error('Error status:', error.response.status);
+        console.error('Error data:', error.response.data);
+        res.status(error.response.status).json({
+          message: 'Failed to convert text to speech using Azure API',
+          details: error.response.data,
+          status: error.response.status
+        });
+      } else if (error.request) {
+        console.error('Error request:', error.request);
+        res.status(500).json({
+          message: 'No response received from Azure API',
+          details: 'The Azure API did not respond in a timely manner'
+        });
+      } else {
+        console.error('Error setting up the request:', error.message);
+        res.status(500).json({
+          message: 'Error setting up the request to Azure API',
+          details: error.message
+        });
+      }
+    }
+  });
+
+
+app.post('/femalespanish', async (req, res) => {
+    const { text } = req.body;
+    if (!text) {
+        return res.status(400).json({ message: "Text is required in the request body." });
+    }
+   
+    const config = {
+        headers: {
+          'Ocp-Apim-Subscription-Key': azureKey,
+          'Content-Type': 'application/ssml+xml',
+          'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm' 
+        },
+        responseType: 'arraybuffer'
+      };
+      
+      const ssml = `<speak version='1.0' xml:lang='en-US'>
+                      <voice xml:lang='es-ES' xml:gender='Female' name='es-ES-HelenaNeural'>
+                        <prosody rate="-10%" pitch="+10%">
+                            ${text}
+                        </prosody>
+                      </voice>
+                    </speak>`;
+
+    try {
+        const response = await axios.post(azureEndpoint, ssml, config);
+        
+        const audioBuffer = Buffer.from(response.data, 'binary');
+        
+        res.writeHead(200, {
+          'Content-Type': 'audio/wav',
+          'Content-Length': audioBuffer.length
+        });
+        res.end(audioBuffer);
+    } catch (error) {
+      console.error('Full Error:', error);
+      if (error.response) {
+        console.error('Error status:', error.response.status);
+        console.error('Error data:', error.response.data);
+        res.status(error.response.status).json({
+          message: 'Failed to convert text to speech using Azure API',
+          details: error.response.data,
+          status: error.response.status
+        });
+      } else if (error.request) {
+        console.error('Error request:', error.request);
+        res.status(500).json({
+          message: 'No response received from Azure API',
+          details: 'The Azure API did not respond in a timely manner'
+        });
+      } else {
+        console.error('Error setting up the request:', error.message);
+        res.status(500).json({
+          message: 'Error setting up the request to Azure API',
+          details: error.message
+        });
+      }
+    }
+  });
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
