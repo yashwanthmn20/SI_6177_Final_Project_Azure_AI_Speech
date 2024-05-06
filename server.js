@@ -2,6 +2,10 @@ const express = require('express');
 const axios = require('axios');
 require('dotenv').config();
 
+//Swagger integration
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger.json');
+
 /* Below code is required to store code in file format 
 const fs = require('fs');
 const path = require('path');
@@ -10,6 +14,10 @@ const path = require('path');
 const app = express();
 app.use(express.json());
 
+// Swagger setup
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
+
 const PORT = process.env.PORT || 3000;
 const azureKey = process.env.AZURE_KEY; 
 const azureEndpoint = `${process.env.AZURE_ENDPOINT}cognitiveservices/v1`;
@@ -17,6 +25,7 @@ const azureEndpoint = `${process.env.AZURE_ENDPOINT}cognitiveservices/v1`;
 app.get('/', (req, res) => {
   res.send('Welcome to Azure Text to Speech API');
 });
+
 
 app.post('/malespeech', async (req, res) => {
     const { text } = req.body;
@@ -199,6 +208,6 @@ app.post('/femalespanish', async (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port http://localhost:${PORT}/`);
   console.log("Making API call to:", azureEndpoint);
 });

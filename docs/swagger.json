@@ -1,0 +1,134 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "This is a simple API for converting text to speech using Azure Cognitive Services.",
+      "version": "1.0.0",
+      "title": "Azure Text to Speech API"
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "paths": {
+      "/malespeech": {
+        "post": {
+          "tags": ["Text to Speech"],
+          "summary": "Convert text to male voice speech",
+          "description": "Converts text to speech using a male voice model.",
+          "consumes": ["application/json"],
+          "produces": ["audio/wav"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Text to convert to speech",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with audio content",
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "400": {
+              "description": "Invalid request due to missing text"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      },
+      "/femalespeech": {
+        "post": {
+          "tags": ["Text to Speech"],
+          "summary": "Convert text to female voice speech",
+          "description": "Converts text to speech using a female voice model.",
+          "consumes": ["application/json"],
+          "produces": ["audio/wav"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Text to convert to speech",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with audio content",
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "400": {
+              "description": "Invalid request due to missing text"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      },
+      "/femalespanish": {
+        "post": {
+          "tags": ["Text to Speech"],
+          "summary": "Convert text to female Spanish voice speech",
+          "description": "Converts text to speech using a female Spanish voice model.",
+          "consumes": ["application/json"],
+          "produces": ["audio/wav"],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Text to convert to speech",
+              "required": true,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "text": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response with audio content",
+              "schema": {
+                "type": "string",
+                "format": "binary"
+              }
+            },
+            "400": {
+              "description": "Invalid request due to missing text"
+            },
+            "500": {
+              "description": "Server error"
+            }
+          }
+        }
+      }
+    }
+  }
+  
