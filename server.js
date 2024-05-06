@@ -46,7 +46,7 @@ app.get('/speech/en/male', (req, res) => {
       <html>
           <head>
             <title>Male Speech English</title>
-            <link rel="stylesheet" href="style.css">
+            <link rel="stylesheet" href=".public/style.css">
             <script>
               document.addEventListener('DOMContentLoaded', function() {
                 const form = document.getElementById('speechForm');
