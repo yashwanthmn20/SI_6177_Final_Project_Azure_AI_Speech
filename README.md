@@ -30,7 +30,7 @@ Let's get started with text-to-speech!
 
 [Swagger](http://localhost:3000/docs/) documentation has been set up for this project and can be used to explore the API endpoints.
 
-![Swagger UI](https://i.imgur.com/EcVqscX.png)
+![Swagger UI](.images/image8.png)
 
 Alternatively, you can follow the steps below to understand how to use the API.
 
