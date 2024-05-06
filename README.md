@@ -13,11 +13,11 @@ System Integration (ITIS-6177) Final Project - Text To Speech Using Azure AI Spe
 - [Limitations](#limitations)
 - [Thank you!](#thank-you)
 
-## Why? 🤔
+## Why?
 
 The goal of this project is to develop a simplified REST API for text-to-speech conversion using [Azure AI Speech](https://azure.microsoft.com/en-us/services/cognitive-services/text-to-speech/) service. This API aims to provide an accessible and easy-to-use interface for integrating text-to-speech functionality into various applications.
 
-## Built Using 🔧
+## Built Using
 
 - [Node.js](https://nodejs.org/en)
 - [Express](https://expressjs.com/)
@@ -31,6 +31,9 @@ Let's get started with text-to-speech!
 [Swagger](http://localhost:3000/docs/) documentation has been set up for this project and can be used to explore the API endpoints.
 
 ![Swagger UI](images/image8.png)
+
+**Disclaimer - Swagger does not support audio output by default.**
+Additionally the use the following UI that i created for testing the API.
 
 Alternatively, you can follow the steps below to understand how to use the API.
 
@@ -71,11 +74,11 @@ I have pushed a sample audio file in the git repo, feel free to check it out, th
 
 **Base URL:** `http://localhost:3000`
 
-| Method | Endpoint       | Description                            |
-| :----: | :------------- | :------------------------------------- |
-|  POST  | /malespeech    | Convert text to male English speech.   |
-|  POST  | /femalespeech  | Convert text to female English speech. |
-|  POST  | /femalespanish | Convert text to female Spanish speech. |
+| Method | Endpoint          | Description                            |
+| :----: | :---------------- | :------------------------------------- |
+|  POST  | /speech/en/male   | Convert text to male English speech.   |
+|  POST  | /speech/en/female | Convert text to female English speech. |
+|  POST  | /speech/es/female | Convert text to female Spanish speech. |
 
 ## Response Codes
 

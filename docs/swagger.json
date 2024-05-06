@@ -9,7 +9,7 @@
     "basePath": "/",
     "schemes": ["http"],
     "paths": {
-      "/malespeech": {
+      "/speech/en/male": {
         "post": {
           "tags": ["Text to Speech"],
           "summary": "Convert text to male voice speech",
@@ -49,7 +49,7 @@
           }
         }
       },
-      "/femalespeech": {
+      "/speech/en/female": {
         "post": {
           "tags": ["Text to Speech"],
           "summary": "Convert text to female voice speech",
@@ -89,7 +89,7 @@
           }
         }
       },
-      "/femalespanish": {
+      "/speech/es/female": {
         "post": {
           "tags": ["Text to Speech"],
           "summary": "Convert text to female Spanish voice speech",
