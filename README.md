@@ -30,7 +30,7 @@ Let's get started with text-to-speech!
 
 [Swagger](http://localhost:3000/docs/) documentation has been set up for this project and can be used to explore the API endpoints.
 
-![Swagger UI](.images/image8.png)
+![Swagger UI](images/image8.png)
 
 Alternatively, you can follow the steps below to understand how to use the API.
 
@@ -42,25 +42,25 @@ Alternatively, you can follow the steps below to understand how to use the API.
 
 1. Open Postman and create a new request.
 
-![Postman New Request](image-3.png)
+![Postman New Request](images/image-3.png)
 
 2. Enter the base URL along with the desired [endpoint](#endpoints). Change the request type to POST.
 
-![Postman Change Request Type](image-4.png)
+![Postman Change Request Type](images/image-4.png)
 
 3. Navigate to the Header section and add a header key "Content-Type" with value as "application/json" as shown below.
 
-![Postman Add Header](image-6.png)
+![Postman Add Header](images/image-6.png)
 
 4. Navigate to Body section and select _raw_ format. Then, enter the text you want to convert to speech in JSON format. (Enter the text in the below format with text as the key and the text you want to convert in the form of value to the key "text")
 
-![Postman Add Body in JSON](image-5.png)
+![Postman Add Body in JSON](images/image-5.png)
 
 4. Click Send and wait for the response.
 
 5. You'll receive an audio file containing the speech based on the provided text.
 
-![Output Audio Format](image-7.png)
+![Output Audio Format](images/image-7.png)
 
 ## Sample Response
 
