@@ -2,8 +2,10 @@ const express = require('express');
 const axios = require('axios');
 require('dotenv').config();
 
+/* Below code is required to store code in file format 
 const fs = require('fs');
 const path = require('path');
+*/
 
 const app = express();
 app.use(express.json());
@@ -26,7 +28,7 @@ app.post('/tospeech', async (req, res) => {
         headers: {
           'Ocp-Apim-Subscription-Key': azureKey,
           'Content-Type': 'application/ssml+xml',
-          'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm' // Changed to 24 kHz mono
+          'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm' 
         },
         responseType: 'arraybuffer'
       };
@@ -38,10 +40,19 @@ app.post('/tospeech', async (req, res) => {
                     </speak>`;
 
     try {
-        const response = await axios.post(azureEndpoint, ssml, config, { responseType: 'arraybuffer' });
+        //const response = await axios.post(azureEndpoint, ssml, config, { responseType: 'arraybuffer' });  
+        const response = await axios.post(azureEndpoint, ssml, config);
+        
         const audioBuffer = Buffer.from(response.data, 'binary');
-        fs.writeFileSync('output.wav', audioBuffer);
-        res.send('Audio file generated successfully!');
+        
+        //fs.writeFileSync('output.wav', audioBuffer);
+        //res.send('Audio file generated successfully!');
+        
+        res.writeHead(200, {
+          'Content-Type': 'audio/wav',
+          'Content-Length': audioBuffer.length
+        });
+        res.end(audioBuffer);
     } catch (error) {
       console.error('Full Error:', error);
       if (error.response) {
