@@ -13,6 +13,7 @@ const path = require('path');
 
 const app = express();
 app.use(express.json());
+app.use(express.static('public'));
 
 // Swagger setup
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
@@ -23,7 +24,79 @@ const azureKey = process.env.AZURE_KEY;
 const azureEndpoint = `${process.env.AZURE_ENDPOINT}cognitiveservices/v1`;
 
 app.get('/', (req, res) => {
-  res.send('Welcome to Azure Text to Speech API');
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Azure Text to Speech (TTS) API</title>
+      </head>
+      <body>
+        <h1> System Integration Final Project Spring '24</h1>
+        <h2>Welcome to Azure Text to Speech (TTS) API</h2>
+      </body>
+    </html>
+  `;
+  res.send(htmlContent);
+}); 
+
+app.get('/malespeech', (req, res) => {
+  const formHtml = `
+      <html>
+          <head>
+            <title>Male Speech English</title>
+            <link rel="stylesheet" href="style.css">
+            <script>
+              document.addEventListener('DOMContentLoaded', function() {
+                const form = document.getElementById('speechForm');
+                const statusText = document.getElementById('statusText');
+
+                form.addEventListener('submit', function(event) {
+                  event.preventDefault();
+                  const text = document.getElementById('text').value;
+                  statusText.textContent = "Processing..."; 
+                  statusText.style.color = "black"; 
+
+                  fetch('/malespeech', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ text: text })
+                  })
+                  .then(response => response.blob())
+                  .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const audioElement = document.getElementById('audioOutput');
+                    audioElement.src = url;
+                    audioElement.autoplay = true; 
+                    statusText.textContent = "Audio ready to play!";
+                    statusText.style.color = "green"; 
+                  })
+                  .catch(err => {
+                    console.error('Error:', err);
+                    statusText.textContent = "Error loading audio.";
+                    statusText.style.color = "red";
+                  });
+                });
+              });
+            </script>
+          </head>
+          <body>
+              <div class="container">
+                <h1>Male English TTS</h1>
+                <form id="speechForm">
+                  <input type="text" id="text" name="text" placeholder="Enter text here..." required>
+                  <button type="submit">Convert Text To Speech</button>
+                </form>
+                <audio id="audioOutput" controls></audio>
+                <p id="statusText">Enter text and convert.</p>
+              </div>
+          </body>
+      </html>
+  `;
+  res.send(formHtml);
 });
 
 
@@ -88,6 +161,64 @@ app.post('/malespeech', async (req, res) => {
     }
   });
 
+  app.get('/femalespeech', (req, res) => {
+    const formHtml = `
+        <html>
+            <head>
+              <title>Female English Speech</title>
+              <link rel="stylesheet" href="style.css">
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  const form = document.getElementById('speechForm');
+                  const statusText = document.getElementById('statusText');
+  
+                  form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const text = document.getElementById('text').value;
+                    statusText.textContent = "Processing..."; 
+                    statusText.style.color = "black"; 
+  
+                    fetch('/femalespeech', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ text: text })
+                    })
+                    .then(response => response.blob())
+                    .then(blob => {
+                      const url = window.URL.createObjectURL(blob);
+                      const audioElement = document.getElementById('audioOutput');
+                      audioElement.src = url;
+                      audioElement.autoplay = true; // Set autoplay to true
+                      statusText.textContent = "Audio ready to play!";
+                      statusText.style.color = "green"; 
+                    })
+                    .catch(err => {
+                      console.error('Error:', err);
+                      statusText.textContent = "Error loading audio.";
+                      statusText.style.color = "red";
+                    });
+                  });
+                });
+              </script>
+            </head>
+            <body>
+                <div class="container">
+                  <h1>Female English TTS</h1>
+                  <form id="speechForm">
+                    <input type="text" id="text" name="text" placeholder="Enter text here..." required>
+                    <button type="submit">Convert Text To Speech</button>
+                  </form>
+                  <audio id="audioOutput" controls></audio>
+                  <p id="statusText">Enter text and convert.</p>
+                </div>
+            </body>
+        </html>
+    `;
+    res.send(formHtml);
+  });
+  
 
 app.post('/femalespeech', async (req, res) => {
     const { text } = req.body;
@@ -146,7 +277,63 @@ app.post('/femalespeech', async (req, res) => {
     }
   });
 
-
+  app.get('/femalespanish', (req, res) => {
+    const formHtml = `
+        <html>
+            <head>
+              <title>Female Spanish Speech</title>
+              <link rel="stylesheet" href="style.css">
+              <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  const form = document.getElementById('speechForm');
+                  const statusText = document.getElementById('statusText');
+  
+                  form.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    const text = document.getElementById('text').value;
+                    statusText.textContent = "Processing..."; 
+                    statusText.style.color = "black"; 
+  
+                    fetch('/femalespanish', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ text: text })
+                    })
+                    .then(response => response.blob())
+                    .then(blob => {
+                      const url = window.URL.createObjectURL(blob);
+                      const audioElement = document.getElementById('audioOutput');
+                      audioElement.src = url;
+                      audioElement.autoplay = true;
+                      statusText.textContent = "Audio ready to play!";
+                      statusText.style.color = "green";
+                    })
+                    .catch(err => {
+                      console.error('Error:', err);
+                      statusText.textContent = "Error loading audio.";
+                      statusText.style.color = "red"; 
+                    });
+                  });
+                });
+              </script>
+            </head>
+            <body>
+                <div class="container">
+                  <h1>Female Spanish TTS</h1>
+                  <form id="speechForm">
+                    <input type="text" id="text" name="text" placeholder="Enter text here..." required>
+                    <button type="submit">Convert Text To Speech</button>
+                  </form>
+                  <audio id="audioOutput" controls></audio>
+                  <p id="statusText">Enter text and convert.</p>
+                </div>
+            </body>
+        </html>
+    `;
+    res.send(formHtml);
+  });
 app.post('/femalespanish', async (req, res) => {
     const { text } = req.body;
     if (!text) {
