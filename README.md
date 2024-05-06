@@ -11,7 +11,7 @@ System Integration (ITIS-6177) Final Project - Text To Speech Using Azure AI Spe
 - [Endpoints](#endpoints)
 - [Response Codes](#response-codes)
 - [Limitations](#limitations)
-- [Thank you!](#if-youve-reached-till-here-youre-awesome-thanks-for-taking-the-time-to-use-my-api-🙌🏻)
+- [Thank you!](#thank-you)
 
 ## Why? 🤔
 
