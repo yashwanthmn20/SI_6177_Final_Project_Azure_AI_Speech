@@ -168,7 +168,7 @@ app.post('/speech/en/male', async (req, res) => {
         <html>
             <head>
               <title>Female English Speech</title>
-              <link rel="stylesheet" href="style.css">
+              <link rel="stylesheet" href="/style.css">
               <script>
                 document.addEventListener('DOMContentLoaded', function() {
                   const form = document.getElementById('speechForm');
@@ -284,7 +284,7 @@ app.post('/speech/en/female', async (req, res) => {
         <html>
             <head>
               <title>Female Spanish Speech</title>
-              <link rel="stylesheet" href="style.css">
+              <link rel="stylesheet" href="/style.css">
               <script>
                 document.addEventListener('DOMContentLoaded', function() {
                   const form = document.getElementById('speechForm');
