@@ -397,6 +397,6 @@ app.post('/speech/es/female', async (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log(`Server running on port http://localhost:${PORT}/`);
+  console.log(`Server running on port http://165.227.221.69:${PORT}/`);
   console.log("Making API call to:", azureEndpoint);
 });

@@ -28,9 +28,9 @@ The goal of this project is to develop a simplified REST API for text-to-speech 
 
 Let's get started with text-to-speech!
 
-[Swagger](http://localhost:3000/docs/) documentation has been set up for this project and can be used to explore the API endpoints.
+[Swagger](http://165.227.221.69:3000/docs/) documentation has been set up for this project and can be used to explore the API endpoints.
 
-![Swagger UI](images/image8.png)
+![Swagger UI](image.png)
 
 **Disclaimer - Swagger does not support audio output by default.**
 Additionally the use the following UI that i created for testing the API.
@@ -72,7 +72,7 @@ I have pushed a sample audio file in the git repo, feel free to check it out, th
 
 ## Endpoints
 
-**Base URL:** `http://localhost:3000`
+**Base URL:** `http://165.227.221.69:3000`
 
 | Method | Endpoint          | Description                            |
 | :----: | :---------------- | :------------------------------------- |
