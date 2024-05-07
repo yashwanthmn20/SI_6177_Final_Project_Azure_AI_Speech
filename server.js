@@ -23,6 +23,8 @@ const PORT = process.env.PORT || 3000;
 const azureKey = process.env.AZURE_KEY; 
 const azureEndpoint = `${process.env.AZURE_ENDPOINT}cognitiveservices/v1`;
 
+app.get('/favicon.ico', (req, res) => res.status(204));
+
 app.get('/', (req, res) => {
   const htmlContent = `
     <!DOCTYPE html>
@@ -46,7 +48,7 @@ app.get('/speech/en/male', (req, res) => {
       <html>
           <head>
             <title>Male Speech English</title>
-            <link rel="stylesheet" href=".public/style.css">
+            <link rel="stylesheet" href="/style.css">
             <script>
               document.addEventListener('DOMContentLoaded', function() {
                 const form = document.getElementById('speechForm');
